@@ -1,12 +1,13 @@
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.1.15
+Version:	0.2.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 URL:		http://telepathy.freedesktop.org/wiki/Folks
-Source0:	http://download.gnome.org/sources/folks/0.1/%{name}-%{version}.tar.bz2
-# Source0-md5:	cb2e04f69bf619943b9ec4b0a6ebc534
+Source0:	http://download.gnome.org/sources/folks/0.2/%{name}-%{version}.tar.bz2
+# Source0-md5:	8c66c03d942313db735f6eb375c2f71a
+Patch0:		telepathy-glib-vala.patch
 BuildRequires:	libgee-devel
 BuildRequires:	telepathy-glib-devel
 BuildRequires:	vala >= 0.9.7
@@ -29,7 +30,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-
+%patch0 -p1
 
 %build
 %configure \
@@ -49,11 +50,14 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
+%attr(755,root,root) %{_bindir}/folks-import
 %attr(755,root,root) %{_libdir}/libfolks.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfolks.so.0
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.0
 %{_libdir}/folks
+%{_datadir}/vala/vapi/folks.*
+%{_datadir}/vala/vapi/folks-telepathy.*
 
 %files devel
 %defattr(644,root,root,755)

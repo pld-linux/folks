@@ -1,0 +1,51 @@
+diff -ur folks-0.2.0/backends/telepathy/lib/tpf-persona-store.vala folks-new/backends/telepathy/lib/tpf-persona-store.vala
+--- folks-0.2.0/backends/telepathy/lib/tpf-persona-store.vala	2010-09-18 16:44:38.000000000 +0200
++++ folks-new/backends/telepathy/lib/tpf-persona-store.vala	2010-09-28 22:40:15.895273003 +0200
+@@ -350,7 +350,7 @@
+       else if (new_status != TelepathyGLib.ConnectionStatus.CONNECTED)
+         return;
+ 
+-      var conn = this.account.get_connection ();
++      var conn = this.account.connection;
+       conn.notify["connection-ready"].connect (this.connection_ready_cb);
+ 
+       /* Deal with the case where the connection is already ready
+@@ -806,7 +806,7 @@
+         {
+           /* the changes queued above will be resolve in the NewChannels handler
+            */
+-          this.ll.connection_create_group_async (this.account.get_connection (),
++          this.ll.connection_create_group_async (this.account.connection,
+               group);
+         }
+       else
+diff -ur folks-0.2.0/backends/telepathy/lib/tpf-persona.vala folks-new/backends/telepathy/lib/tpf-persona.vala
+--- folks-0.2.0/backends/telepathy/lib/tpf-persona.vala	2010-09-18 16:44:38.000000000 +0200
++++ folks-new/backends/telepathy/lib/tpf-persona.vala	2010-09-28 22:41:22.675273004 +0200
+@@ -197,7 +197,7 @@
+         throw new Tpf.PersonaError.INVALID_ARGUMENT ("contact has an " +
+             "invalid ID");
+ 
+-      var account = account_for_connection (contact.get_connection ());
++      var account = account_for_connection (contact.connection);
+       string uid = this.build_uid ("telepathy", account.get_protocol (), id);
+ 
+       var alias = contact.get_alias ();
+@@ -293,7 +293,7 @@
+       accounts.foreach ((l) =>
+         {
+           unowned Account account = (Account) l;
+-          if (account.get_connection () == conn)
++          if (account.connection == conn)
+             {
+               account_found = account;
+               return;
+@@ -344,7 +344,7 @@
+ 
+   private void contact_notify_avatar ()
+     {
+-      var file = this.contact.get_avatar_file ();
++      var file = this.contact.avatar_file;
+       if (this.avatar != file)
+         this.avatar = file;
+     }
