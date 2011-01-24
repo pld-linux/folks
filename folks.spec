@@ -9,24 +9,25 @@ Source0:	http://download.gnome.org/sources/folks/0.2/%{name}-%{version}.tar.bz2
 # Source0-md5:	8c66c03d942313db735f6eb375c2f71a
 Patch0:		telepathy-glib-vala.patch
 BuildRequires:	libgee-devel
+BuildRequires:	libxml2-devel
+BuildRequires:	pkgconfig
 BuildRequires:	telepathy-glib-devel
 BuildRequires:	vala >= 0.9.7
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 libfolks is a library that aggregates people from multiple sources
 (e.g. Telepathy connection managers and eventually evolution data
 server, Facebook, etc.) to create meta-contacts.
 
-
-%package        devel
+%package devel
 Summary:	Development files for %{name}
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
-%description    devel
+%description devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %prep
 %setup -q
@@ -34,15 +35,17 @@ developing applications that use %{name}.
 
 %build
 %configure \
-	--disable-static \
+	--disable-static
 
-%{__make} %{?_smp_mflags} V=1
-
+%{__make} V=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -55,13 +58,16 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %attr(755,root,root) %ghost %{_libdir}/libfolks.so.0
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.0
-%{_libdir}/folks
+%dir %{_libdir}/folks
+%dir %{_libdir}/folks/15
+%dir %{_libdir}/folks/15/backends
+%dir %{_libdir}/folks/15/backends/*
+%attr(755,root,root) %{_libdir}/folks/15/backends/*/libfolks-backend-*.so
 %{_datadir}/vala/vapi/folks.*
 %{_datadir}/vala/vapi/folks-telepathy.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc
 %{_includedir}/folks
 %{_libdir}/libfolks.so
 %{_libdir}/libfolks-telepathy.so
