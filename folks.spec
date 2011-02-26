@@ -1,13 +1,12 @@
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.2.0
+Version:	0.3.6
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 URL:		http://telepathy.freedesktop.org/wiki/Folks
-Source0:	http://download.gnome.org/sources/folks/0.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	8c66c03d942313db735f6eb375c2f71a
-Patch0:		telepathy-glib-vala.patch
+Source0:	http://download.gnome.org/sources/folks/0.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	a708f45d67620294effd33fd88f2a81d
 BuildRequires:	libgee-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
@@ -31,7 +30,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure \
@@ -44,25 +42,27 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/folks-import
 %attr(755,root,root) %{_libdir}/libfolks.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks.so.0
+%attr(755,root,root) %ghost %{_libdir}/libfolks.so.21
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.0
+%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.21
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/15
-%dir %{_libdir}/folks/15/backends
-%dir %{_libdir}/folks/15/backends/*
-%attr(755,root,root) %{_libdir}/folks/15/backends/*/libfolks-backend-*.so
+%dir %{_libdir}/folks/21
+%dir %{_libdir}/folks/21/backends
+%dir %{_libdir}/folks/21/backends/*
+%attr(755,root,root) %{_libdir}/folks/21/backends/*/libfolks-backend-*.so
 %{_datadir}/vala/vapi/folks.*
 %{_datadir}/vala/vapi/folks-telepathy.*
 
