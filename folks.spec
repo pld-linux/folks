@@ -11,7 +11,7 @@ BuildRequires:	libgee-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
 BuildRequires:	telepathy-glib-devel
-BuildRequires:	vala >= 0.9.7
+BuildRequires:	vala >= 0.11.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,14 +33,20 @@ developing applications that use %{name}.
 
 %build
 %configure \
-	--disable-static
+	--disable-silent-rules \
+	--disable-static \
+	--enable-vala
 
-%{__make} V=1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/folks/21/backends/*/libfolks-backend-*.la \
+	$RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang %{name}
 
@@ -54,6 +60,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/folks-import
+%attr(755,root,root) %{_bindir}/folks-inspect
 %attr(755,root,root) %{_libdir}/libfolks.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfolks.so.21
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
