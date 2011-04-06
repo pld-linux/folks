@@ -1,18 +1,22 @@
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.2.0
+Version:	0.4.2
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.4/%{name}-%{version}.tar.bz2
+# Source0-md5:	9cfc8d77866a6f18830a5dff3e47c3e1
 URL:		http://telepathy.freedesktop.org/wiki/Folks
-Source0:	http://download.gnome.org/sources/folks/0.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	8c66c03d942313db735f6eb375c2f71a
-Patch0:		telepathy-glib-vala.patch
-BuildRequires:	libgee-devel
+BuildRequires:	dbus-glib-devel
+BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel >= 1:2.24.0
+BuildRequires:	gobject-introspection-devel >= 0.10.0
+BuildRequires:	intltool >= 0.35.0
+BuildRequires:	libgee-devel < 0.7
 BuildRequires:	libxml2-devel
-BuildRequires:	pkgconfig
-BuildRequires:	telepathy-glib-devel
-BuildRequires:	vala >= 0.9.7
+BuildRequires:	pkgconfig >= 1:0.21
+BuildRequires:	telepathy-glib-devel >= 0.13.1
+BuildRequires:	vala >= 1:0.11.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -21,28 +25,41 @@ libfolks is a library that aggregates people from multiple sources
 server, Facebook, etc.) to create meta-contacts.
 
 %package devel
-Summary:	Development files for %{name}
+Summary:	Development files for folks libraries
+Summary(pl.UTF-8):	Pliki programistyczne bibliotek folks
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.24.0
+Requires:	libgee-devel < 0.7
+Requires:	telepathy-glib-devel >= 0.13.1
 
 %description devel
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
+Development files for folks libraries.
+
+%description devel -l pl.UTF-8
+Pliki programistyczne bibliotek folks.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure \
-	--disable-static
+	--disable-silent-rules \
+	--disable-static \
+	--enable-vala
 
-%{__make} V=1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/folks/22/backends/*/libfolks-backend-*.la \
+	$RPM_BUILD_ROOT%{_libdir}/*.la
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -50,26 +67,27 @@ rm -rf $RPM_BUILD_ROOT
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/folks-import
+%attr(755,root,root) %{_bindir}/folks-inspect
 %attr(755,root,root) %{_libdir}/libfolks.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks.so.0
+%attr(755,root,root) %ghost %{_libdir}/libfolks.so.22
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.0
+%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.22
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/15
-%dir %{_libdir}/folks/15/backends
-%dir %{_libdir}/folks/15/backends/*
-%attr(755,root,root) %{_libdir}/folks/15/backends/*/libfolks-backend-*.so
-%{_datadir}/vala/vapi/folks.*
-%{_datadir}/vala/vapi/folks-telepathy.*
+%dir %{_libdir}/folks/22
+%dir %{_libdir}/folks/22/backends
+%dir %{_libdir}/folks/22/backends/*
+%attr(755,root,root) %{_libdir}/folks/22/backends/*/libfolks-backend-*.so
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libfolks.so
+%attr(755,root,root) %{_libdir}/libfolks-telepathy.so
+%{_datadir}/vala/vapi/folks.*
+%{_datadir}/vala/vapi/folks-telepathy.*
 %{_includedir}/folks
-%{_libdir}/libfolks.so
-%{_libdir}/libfolks-telepathy.so
 %{_pkgconfigdir}/folks.pc
 %{_pkgconfigdir}/folks-telepathy.pc
