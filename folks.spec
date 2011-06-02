@@ -7,6 +7,7 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.5/%{name}-%{version}.tar.bz2
 # Source0-md5:	78c5807148721a5e316fa54b436d2918
 URL:		http://telepathy.freedesktop.org/wiki/Folks
+BuildRequires:	GConf2-devel >= 2.31.0
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.24.0
@@ -16,6 +17,7 @@ BuildRequires:	libgee-devel < 0.7
 BuildRequires:	libsocialweb-devel >= 0.25.15-2
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig >= 1:0.21
+BuildRequires:	readline-devel
 BuildRequires:	telepathy-glib-devel >= 0.13.1
 BuildRequires:	vala >= 1:0.12.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -74,20 +76,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/folks-import
 %attr(755,root,root) %{_bindir}/folks-inspect
 %attr(755,root,root) %{_libdir}/libfolks.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks.so.22
+%attr(755,root,root) %ghost %{_libdir}/libfolks.so.24
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.22
+%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.24
 %attr(755,root,root) %{_libdir}/libfolks-libsocialweb.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-libsocialweb.so.22
+%attr(755,root,root) %ghost %{_libdir}/libfolks-libsocialweb.so.24
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/23
-%dir %{_libdir}/folks/23/backends
-%dir %{_libdir}/folks/23/backends/key-file
-%attr(755,root,root) %{_libdir}/folks/23/backends/key-file/libfolks-backend-key-file.so
-%dir %{_libdir}/folks/23/backends/libsocialweb
-%attr(755,root,root) %{_libdir}/folks/23/backends/libsocialweb/libfolks-backend-libsocialweb.so
-%dir %{_libdir}/folks/23/backends/telepathy
-%attr(755,root,root) %{_libdir}/folks/23/backends/telepathy/libfolks-backend-telepathy.so
+%dir %{_libdir}/folks/24
+%dir %{_libdir}/folks/24/backends
+%dir %{_libdir}/folks/24/backends/key-file
+%attr(755,root,root) %{_libdir}/folks/24/backends/key-file/libfolks-backend-key-file.so
+%dir %{_libdir}/folks/24/backends/libsocialweb
+%attr(755,root,root) %{_libdir}/folks/24/backends/libsocialweb/libfolks-backend-libsocialweb.so
+%dir %{_libdir}/folks/24/backends/telepathy
+%attr(755,root,root) %{_libdir}/folks/24/backends/telepathy/libfolks-backend-telepathy.so
 
 %files devel
 %defattr(644,root,root,755)
