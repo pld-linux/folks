@@ -90,12 +90,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/folks/24/backends/libsocialweb/libfolks-backend-libsocialweb.so
 %dir %{_libdir}/folks/24/backends/telepathy
 %attr(755,root,root) %{_libdir}/folks/24/backends/telepathy/libfolks-backend-telepathy.so
+%{_libdir}/girepository-1.0/*.typelib
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libfolks.so
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so
 %attr(755,root,root) %{_libdir}/libfolks-libsocialweb.so
+%{_datadir}/gir-1.0/*.gir
 %{_datadir}/vala/vapi/folks.deps
 %{_datadir}/vala/vapi/folks.vapi
 %{_datadir}/vala/vapi/folks-libsocialweb.deps
