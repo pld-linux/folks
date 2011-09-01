@@ -1,14 +1,15 @@
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.5.2
+Version:	0.6.1
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	78c5807148721a5e316fa54b436d2918
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	04d104eb3e65a58ca5466266ce0ce4db
 URL:		http://telepathy.freedesktop.org/wiki/Folks
 BuildRequires:	GConf2-devel >= 2.31.0
 BuildRequires:	dbus-glib-devel
+BuildRequires:	evolution-data-server
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
@@ -19,7 +20,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	readline-devel
 BuildRequires:	telepathy-glib-devel >= 0.13.1
-BuildRequires:	vala >= 1:0.12.0
+BuildRequires:	vala >= 1:0.13.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -59,7 +60,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/folks/*/backends/*/libfolks-backend-*.la \
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/folks/*/backends/*/*.la \
 	$RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang %{name}
@@ -76,35 +77,43 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/folks-import
 %attr(755,root,root) %{_bindir}/folks-inspect
 %attr(755,root,root) %{_libdir}/libfolks.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks.so.24
-%attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.24
+%attr(755,root,root) %ghost %{_libdir}/libfolks.so.25
+%attr(755,root,root) %{_libdir}/libfolks-eds.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfolks-eds.so.25
 %attr(755,root,root) %{_libdir}/libfolks-libsocialweb.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-libsocialweb.so.24
+%attr(755,root,root) %ghost %{_libdir}/libfolks-libsocialweb.so.25
+%attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.25
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/24
-%dir %{_libdir}/folks/24/backends
-%dir %{_libdir}/folks/24/backends/key-file
-%attr(755,root,root) %{_libdir}/folks/24/backends/key-file/libfolks-backend-key-file.so
-%dir %{_libdir}/folks/24/backends/libsocialweb
-%attr(755,root,root) %{_libdir}/folks/24/backends/libsocialweb/libfolks-backend-libsocialweb.so
-%dir %{_libdir}/folks/24/backends/telepathy
-%attr(755,root,root) %{_libdir}/folks/24/backends/telepathy/libfolks-backend-telepathy.so
+%dir %{_libdir}/folks/25
+%dir %{_libdir}/folks/25/backends
+%dir %{_libdir}/folks/25/backends/eds
+%attr(755,root,root) %{_libdir}/folks/25/backends/eds/eds.so
+%dir %{_libdir}/folks/25/backends/key-file
+%attr(755,root,root) %{_libdir}/folks/25/backends/key-file/key-file.so
+%dir %{_libdir}/folks/25/backends/libsocialweb
+%attr(755,root,root) %{_libdir}/folks/25/backends/libsocialweb/libsocialweb.so
+%dir %{_libdir}/folks/25/backends/telepathy
+%attr(755,root,root) %{_libdir}/folks/25/backends/telepathy/telepathy.so
 %{_libdir}/girepository-1.0/*.typelib
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libfolks.so
-%attr(755,root,root) %{_libdir}/libfolks-telepathy.so
+%attr(755,root,root) %{_libdir}/libfolks-eds.so
 %attr(755,root,root) %{_libdir}/libfolks-libsocialweb.so
+%attr(755,root,root) %{_libdir}/libfolks-telepathy.so
 %{_datadir}/gir-1.0/*.gir
 %{_datadir}/vala/vapi/folks.deps
 %{_datadir}/vala/vapi/folks.vapi
+%{_datadir}/vala/vapi/folks-eds.deps
+%{_datadir}/vala/vapi/folks-eds.vapi
 %{_datadir}/vala/vapi/folks-libsocialweb.deps
 %{_datadir}/vala/vapi/folks-libsocialweb.vapi
 %{_datadir}/vala/vapi/folks-telepathy.deps
 %{_datadir}/vala/vapi/folks-telepathy.vapi
 %{_includedir}/folks
 %{_pkgconfigdir}/folks.pc
-%{_pkgconfigdir}/folks-telepathy.pc
+%{_pkgconfigdir}/folks-eds.pc
 %{_pkgconfigdir}/folks-libsocialweb.pc
+%{_pkgconfigdir}/folks-telepathy.pc
