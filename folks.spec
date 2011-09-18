@@ -8,20 +8,24 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.6/%{name}-%{version}.tar
 # Source0-md5:	1c1771a9424a4f231cd020a7deeb8679
 URL:		http://telepathy.freedesktop.org/wiki/Folks
 BuildRequires:	GConf2-devel >= 2.31.0
+BuildRequires:	autoconf >= 2.65
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
-BuildRequires:	evolution-data-server
+BuildRequires:	evolution-data-server-devel >= 3.1.5
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libgee-devel < 0.7
 BuildRequires:	libsocialweb-devel >= 0.25.15-2
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	readline-devel
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	telepathy-glib-devel >= 0.13.1
-BuildRequires:	vala >= 1:0.13.3
+BuildRequires:	telepathy-glib-devel >= 0.14.0
+BuildRequires:	tracker-devel >= 0.10.6
+BuildRequires:	vala >= 1:0.13.4
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,9 +39,12 @@ Summary:	Development files for folks libraries
 Summary(pl.UTF-8):	Pliki programistyczne bibliotek folks
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	evolution-data-server-devel >= 3.1.5
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	libgee-devel < 0.7
-Requires:	telepathy-glib-devel >= 0.13.1
+Requires:	libsocialweb-devel >= 0.25.15-2
+Requires:	telepathy-glib-devel >= 0.14.0
+Requires:	tracker-devel >= 0.10.6
 
 %description devel
 Development files for folks libraries.
@@ -49,6 +56,12 @@ Pliki programistyczne bibliotek folks.
 %setup -q
 
 %build
+%{__intltoolize}
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--disable-silent-rules \
 	--disable-static \
