@@ -1,11 +1,11 @@
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.4.2
+Version:	0.4.3
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	9cfc8d77866a6f18830a5dff3e47c3e1
+# Source0-md5:	82e3b69de10e5dd59bae170b595f8ad7
 URL:		http://telepathy.freedesktop.org/wiki/Folks
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gettext-devel
@@ -71,7 +71,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/folks-import
-%attr(755,root,root) %{_bindir}/folks-inspect
 %attr(755,root,root) %{_libdir}/libfolks.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfolks.so.22
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
