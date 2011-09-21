@@ -19,7 +19,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	readline-devel
 BuildRequires:	telepathy-glib-devel >= 0.13.1
-BuildRequires:	vala >= 1:0.12.0
+BuildRequires:	vala-devel >= 1:0.12.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
