@@ -100,16 +100,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.25
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/28
-%dir %{_libdir}/folks/28/backends
-%dir %{_libdir}/folks/28/backends/eds
-%attr(755,root,root) %{_libdir}/folks/28/backends/eds/eds.so
-%dir %{_libdir}/folks/28/backends/key-file
-%attr(755,root,root) %{_libdir}/folks/28/backends/key-file/key-file.so
-%dir %{_libdir}/folks/28/backends/libsocialweb
-%attr(755,root,root) %{_libdir}/folks/28/backends/libsocialweb/libsocialweb.so
-%dir %{_libdir}/folks/28/backends/telepathy
-%attr(755,root,root) %{_libdir}/folks/28/backends/telepathy/telepathy.so
+%dir %{_libdir}/folks/29
+%dir %{_libdir}/folks/29/backends
+%dir %{_libdir}/folks/29/backends/eds
+%attr(755,root,root) %{_libdir}/folks/29/backends/eds/eds.so
+%dir %{_libdir}/folks/29/backends/key-file
+%attr(755,root,root) %{_libdir}/folks/29/backends/key-file/key-file.so
+%dir %{_libdir}/folks/29/backends/libsocialweb
+%attr(755,root,root) %{_libdir}/folks/29/backends/libsocialweb/libsocialweb.so
+%dir %{_libdir}/folks/29/backends/telepathy
+%attr(755,root,root) %{_libdir}/folks/29/backends/telepathy/telepathy.so
 %{_libdir}/girepository-1.0/*.typelib
 
 %files devel
