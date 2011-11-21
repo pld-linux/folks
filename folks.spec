@@ -16,7 +16,7 @@ BuildRequires:	libgee-devel < 0.7
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	telepathy-glib-devel >= 0.13.1
-BuildRequires:	vala >= 1:0.11.6
+BuildRequires:	vala >= 2:0.11.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
