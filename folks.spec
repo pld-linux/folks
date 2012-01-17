@@ -1,11 +1,11 @@
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.6.5
+Version:	0.6.6
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.6/%{name}-%{version}.tar.xz
-# Source0-md5:	31dce2251d3ab3323ac098eda820de1c
+# Source0-md5:	dc6c70abb772978807140a0d12f2d4dd
 URL:		http://telepathy.freedesktop.org/wiki/Folks
 BuildRequires:	GConf2-devel >= 2.31.0
 BuildRequires:	autoconf >= 2.65
@@ -14,7 +14,7 @@ BuildRequires:	dbus-glib-devel
 BuildRequires:	evolution-data-server-devel >= 3.2.0
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.24.0
-BuildRequires:	gobject-introspection-devel >= 0.10.0
+BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libgee-devel < 0.7
 BuildRequires:	libsocialweb-devel >= 0.25.15-2
@@ -100,16 +100,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.25
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/29
-%dir %{_libdir}/folks/29/backends
-%dir %{_libdir}/folks/29/backends/eds
-%attr(755,root,root) %{_libdir}/folks/29/backends/eds/eds.so
-%dir %{_libdir}/folks/29/backends/key-file
-%attr(755,root,root) %{_libdir}/folks/29/backends/key-file/key-file.so
-%dir %{_libdir}/folks/29/backends/libsocialweb
-%attr(755,root,root) %{_libdir}/folks/29/backends/libsocialweb/libsocialweb.so
-%dir %{_libdir}/folks/29/backends/telepathy
-%attr(755,root,root) %{_libdir}/folks/29/backends/telepathy/telepathy.so
+%dir %{_libdir}/folks/30
+%dir %{_libdir}/folks/30/backends
+%dir %{_libdir}/folks/30/backends/eds
+%attr(755,root,root) %{_libdir}/folks/30/backends/eds/eds.so
+%dir %{_libdir}/folks/30/backends/key-file
+%attr(755,root,root) %{_libdir}/folks/30/backends/key-file/key-file.so
+%dir %{_libdir}/folks/30/backends/libsocialweb
+%attr(755,root,root) %{_libdir}/folks/30/backends/libsocialweb/libsocialweb.so
+%dir %{_libdir}/folks/30/backends/telepathy
+%attr(755,root,root) %{_libdir}/folks/30/backends/telepathy/telepathy.so
 %{_libdir}/girepository-1.0/*.typelib
 
 %files devel
