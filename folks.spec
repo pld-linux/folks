@@ -23,7 +23,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	readline-devel
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	telepathy-glib-devel >= 0.14.0
+BuildRequires:	telepathy-glib-devel >= 0.16.4
 BuildRequires:	tracker-devel >= 0.12.0
 BuildRequires:	vala >= 2:0.14.0
 BuildRequires:	xz
