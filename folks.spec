@@ -17,7 +17,7 @@ BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libgee-devel < 0.7
-BuildRequires:	libsocialweb-devel >= 0.25.15-2
+BuildRequires:	libsocialweb-devel >= 0.25.20
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig >= 1:0.21
@@ -26,6 +26,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	telepathy-glib-devel >= 0.16.4
 BuildRequires:	tracker-devel >= 0.14.0
 BuildRequires:	vala >= 2:0.16.0
+BuildRequires:	vala-libgee < 0.7
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,8 +43,8 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	evolution-data-server-devel >= 3.2.0
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	libgee-devel < 0.7
-Requires:	libsocialweb-devel >= 0.25.15-2
-Requires:	telepathy-glib-devel >= 0.14.0
+Requires:	libsocialweb-devel >= 0.25.20
+Requires:	telepathy-glib-devel >= 0.16.4
 Requires:	tracker-devel >= 0.14.0
 
 %description devel
