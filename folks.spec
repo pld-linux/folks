@@ -1,11 +1,11 @@
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.6.8
+Version:	0.6.9
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.6/%{name}-%{version}.tar.xz
-# Source0-md5:	d7552026c4763a3d6e915a2de0fbec3f
+# Source0-md5:	49b739a9359a9b030844a2719cf5bb45
 URL:		http://telepathy.freedesktop.org/wiki/Folks
 BuildRequires:	GConf2-devel >= 2.31.0
 BuildRequires:	autoconf >= 2.65
