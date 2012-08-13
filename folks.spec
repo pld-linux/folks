@@ -1,7 +1,11 @@
+#
+# Conditional build:
+%bcond_without	vala		# do not build Vala API
+#
 Summary:	GObject contact aggregation library
 Name:		folks
 Version:	0.6.9
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.6/%{name}-%{version}.tar.xz
@@ -25,8 +29,10 @@ BuildRequires:	readline-devel
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	telepathy-glib-devel >= 0.16.4
 BuildRequires:	tracker-devel >= 0.14.0
+%if %{with vala}
 BuildRequires:	vala >= 2:0.16.0
 BuildRequires:	vala-libgee < 0.7
+%endif
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -53,6 +59,19 @@ Development files for folks libraries.
 %description devel -l pl.UTF-8
 Pliki programistyczne bibliotek folks.
 
+%package -n vala-folks
+Summary:	folks API for Vala language
+Summary(pl.UTF-8):	API folks dla języka Vala
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description -n vala-folks
+folks API for Vala language.
+
+%description -n vala-folks -l pl.UTF-8
+API folks dla języka Vala.
+
+
 %prep
 %setup -q
 
@@ -66,7 +85,7 @@ Pliki programistyczne bibliotek folks.
 %configure \
 	--disable-silent-rules \
 	--disable-static \
-	--enable-vala
+	%{__enable_disable vala vala}
 
 %{__make}
 
@@ -120,6 +139,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfolks-libsocialweb.so
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so
 %{_datadir}/gir-1.0/*.gir
+%{_includedir}/folks
+%{_pkgconfigdir}/folks.pc
+%{_pkgconfigdir}/folks-eds.pc
+%{_pkgconfigdir}/folks-libsocialweb.pc
+%{_pkgconfigdir}/folks-telepathy.pc
+
+%if %{with vala}
+%files -n vala-folks
+%defattr(644,root,root,755)
 %{_datadir}/vala/vapi/folks.deps
 %{_datadir}/vala/vapi/folks.vapi
 %{_datadir}/vala/vapi/folks-eds.deps
@@ -128,8 +156,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/vala/vapi/folks-libsocialweb.vapi
 %{_datadir}/vala/vapi/folks-telepathy.deps
 %{_datadir}/vala/vapi/folks-telepathy.vapi
-%{_includedir}/folks
-%{_pkgconfigdir}/folks.pc
-%{_pkgconfigdir}/folks-eds.pc
-%{_pkgconfigdir}/folks-libsocialweb.pc
-%{_pkgconfigdir}/folks-telepathy.pc
+%endif
