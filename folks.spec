@@ -5,7 +5,7 @@
 Summary:	GObject contact aggregation library
 Name:		folks
 Version:	0.6.9
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.6/%{name}-%{version}.tar.xz
@@ -31,7 +31,10 @@ BuildRequires:	telepathy-glib-devel >= 0.16.4
 BuildRequires:	tracker-devel >= 0.14.0
 %if %{with vala}
 BuildRequires:	vala >= 2:0.16.0
+BuildRequires:	vala-evolution-data-server >= 3.2.0
 BuildRequires:	vala-libgee < 0.7
+BuildRequires:	vala-libsocialweb >= 0.25.20
+BuildRequires:	vala-telepathy-glib >= 0.16.4
 %endif
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
