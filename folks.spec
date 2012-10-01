@@ -34,7 +34,7 @@ BuildRequires:	vala >= 2:0.17.6
 BuildRequires:	vala-evolution-data-server >= 3.6.0
 BuildRequires:	vala-libgee < 0.7
 BuildRequires:	vala-libsocialweb >= 0.25.20
-BuildRequires:	vala-telepathy-glib >= 0.9.0
+BuildRequires:	vala-telepathy-glib >= 0.19.0
 BuildRequires:	vala-zeitgeist >= 0.3.14
 BuildRequires:	vala-tracker >= 0.14.0
 %endif
