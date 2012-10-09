@@ -4,12 +4,12 @@
 #
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.7.4
+Version:	0.8.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.7/%{name}-%{version}.tar.xz
-# Source0-md5:	4bf33efd35c07477a963fb5aa83cdf0e
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.8/%{name}-%{version}.tar.xz
+# Source0-md5:	5664f85c4acdda2934cbd08a9d3d78e3
 URL:		http://telepathy.freedesktop.org/wiki/Folks
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
@@ -117,28 +117,28 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/folks-import
 %attr(755,root,root) %{_bindir}/folks-inspect
 %attr(755,root,root) %{_libdir}/libfolks.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks.so.24
+%attr(755,root,root) %ghost %{_libdir}/libfolks.so.25
 %attr(755,root,root) %{_libdir}/libfolks-eds.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-eds.so.24
+%attr(755,root,root) %ghost %{_libdir}/libfolks-eds.so.25
 %attr(755,root,root) %{_libdir}/libfolks-libsocialweb.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-libsocialweb.so.24
+%attr(755,root,root) %ghost %{_libdir}/libfolks-libsocialweb.so.25
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.24
+%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.25
 %attr(755,root,root) %{_libdir}/libfolks-tracker.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-tracker.so.24
+%attr(755,root,root) %ghost %{_libdir}/libfolks-tracker.so.25
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/36
-%dir %{_libdir}/folks/36/backends
-%dir %{_libdir}/folks/36/backends/eds
-%attr(755,root,root) %{_libdir}/folks/36/backends/eds/eds.so
-%dir %{_libdir}/folks/36/backends/key-file
-%attr(755,root,root) %{_libdir}/folks/36/backends/key-file/key-file.so
-%dir %{_libdir}/folks/36/backends/libsocialweb
-%attr(755,root,root) %{_libdir}/folks/36/backends/libsocialweb/libsocialweb.so
-%dir %{_libdir}/folks/36/backends/telepathy
-%attr(755,root,root) %{_libdir}/folks/36/backends/telepathy/telepathy.so
-%dir %{_libdir}/folks/36/backends/tracker
-%attr(755,root,root) %{_libdir}/folks/36/backends/tracker/tracker.so
+%dir %{_libdir}/folks/37
+%dir %{_libdir}/folks/37/backends
+%dir %{_libdir}/folks/37/backends/eds
+%attr(755,root,root) %{_libdir}/folks/37/backends/eds/eds.so
+%dir %{_libdir}/folks/37/backends/key-file
+%attr(755,root,root) %{_libdir}/folks/37/backends/key-file/key-file.so
+%dir %{_libdir}/folks/37/backends/libsocialweb
+%attr(755,root,root) %{_libdir}/folks/37/backends/libsocialweb/libsocialweb.so
+%dir %{_libdir}/folks/37/backends/telepathy
+%attr(755,root,root) %{_libdir}/folks/37/backends/telepathy/telepathy.so
+%dir %{_libdir}/folks/37/backends/tracker
+%attr(755,root,root) %{_libdir}/folks/37/backends/tracker/tracker.so
 %{_libdir}/girepository-1.0/*.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
