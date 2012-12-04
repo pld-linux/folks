@@ -5,12 +5,12 @@
 Summary:	GObject contact aggregation library
 Name:		folks
 Version:	0.8.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.8/%{name}-%{version}.tar.xz
 # Source0-md5:	5664f85c4acdda2934cbd08a9d3d78e3
-URL:		http://telepathy.freedesktop.org/wiki/Folks
+URL:		https://live.gnome.org/Folks
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
@@ -19,7 +19,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	intltool >= 0.50.0
-BuildRequires:	libgee-devel < 0.7
+BuildRequires:	libgee0.6-devel
 BuildRequires:	libsocialweb-devel >= 0.25.20
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
@@ -32,7 +32,7 @@ BuildRequires:	tracker-devel >= 0.14.0
 %if %{with vala}
 BuildRequires:	vala >= 2:0.17.6
 BuildRequires:	vala-evolution-data-server >= 3.6.0
-BuildRequires:	vala-libgee < 0.7
+BuildRequires:	vala-libgee0.6
 BuildRequires:	vala-libsocialweb >= 0.25.20
 BuildRequires:	vala-telepathy-glib >= 0.19.0
 BuildRequires:	vala-zeitgeist >= 0.3.14
@@ -53,7 +53,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	evolution-data-server-devel >= 3.6.0
 Requires:	glib2-devel >= 1:2.32.0
-Requires:	libgee-devel < 0.7
+Requires:	libgee0.6-devel
 Requires:	libsocialweb-devel >= 0.25.20
 Requires:	telepathy-glib-devel >= 0.19.0
 Requires:	tracker-devel >= 0.14.0
