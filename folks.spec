@@ -5,7 +5,7 @@
 Summary:	GObject contact aggregation library
 Name:		folks
 Version:	0.9.1
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.9/%{name}-%{version}.tar.xz
@@ -55,12 +55,12 @@ Summary:	Development files for folks libraries
 Summary(pl.UTF-8):	Pliki programistyczne bibliotek folks
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	evolution-data-server-devel >= 3.6.0
+Requires:	evolution-data-server-devel >= 3.7.90
 Requires:	glib2-devel >= 1:2.32.0
-Requires:	libgee0.6-devel
+Requires:	libgee-devel >= 0.8.4
 Requires:	libsocialweb-devel >= 0.25.20
 Requires:	telepathy-glib-devel >= 0.19.0
-Requires:	tracker-devel >= 0.14.0
+Requires:	tracker-devel >= 0.16.0
 
 %description devel
 Development files for folks libraries.
