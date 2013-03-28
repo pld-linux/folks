@@ -4,41 +4,45 @@
 #
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.8.0
-Release:	2
+Version:	0.9.1
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.8/%{name}-%{version}.tar.xz
-# Source0-md5:	5664f85c4acdda2934cbd08a9d3d78e3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.9/%{name}-%{version}.tar.xz
+# Source0-md5:	4c7fc50c24994570c021940207497f3d
 URL:		https://live.gnome.org/Folks
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
-BuildRequires:	evolution-data-server-devel >= 3.6.0
+BuildRequires:	evolution-data-server-devel >= 3.7.90
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	intltool >= 0.50.0
-BuildRequires:	libgee0.6-devel
+BuildRequires:	libgee-devel >= 0.8.4
 BuildRequires:	libsocialweb-devel >= 0.25.20
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	libzeitgeist-devel >= 0.3.14
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	readline-devel
+BuildRequires:	ncurses-devel
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	telepathy-glib-devel >= 0.19.0
-BuildRequires:	tracker-devel >= 0.14.0
+BuildRequires:	tracker-devel >= 0.16.0
 %if %{with vala}
 BuildRequires:	vala >= 2:0.17.6
-BuildRequires:	vala-evolution-data-server >= 3.6.0
-BuildRequires:	vala-libgee0.6
+BuildRequires:	valadoc >= 0.3.1
+BuildRequires:	vala-evolution-data-server >= 3.7.90
+BuildRequires:	vala-libgee >= 0.8.4
 BuildRequires:	vala-libsocialweb >= 0.25.20
 BuildRequires:	vala-telepathy-glib >= 0.19.0
 BuildRequires:	vala-zeitgeist >= 0.3.14
-BuildRequires:	vala-tracker >= 0.14.0
+BuildRequires:	vala-tracker >= 0.16.0
 %endif
 BuildRequires:	xz
+Requires:	libgee >= 0.8.4
+Requires:	evolution-data-server-libs >= 3.7.90
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -127,18 +131,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfolks-tracker.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfolks-tracker.so.25
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/37
-%dir %{_libdir}/folks/37/backends
-%dir %{_libdir}/folks/37/backends/eds
-%attr(755,root,root) %{_libdir}/folks/37/backends/eds/eds.so
-%dir %{_libdir}/folks/37/backends/key-file
-%attr(755,root,root) %{_libdir}/folks/37/backends/key-file/key-file.so
-%dir %{_libdir}/folks/37/backends/libsocialweb
-%attr(755,root,root) %{_libdir}/folks/37/backends/libsocialweb/libsocialweb.so
-%dir %{_libdir}/folks/37/backends/telepathy
-%attr(755,root,root) %{_libdir}/folks/37/backends/telepathy/telepathy.so
-%dir %{_libdir}/folks/37/backends/tracker
-%attr(755,root,root) %{_libdir}/folks/37/backends/tracker/tracker.so
+%dir %{_libdir}/folks/38
+%dir %{_libdir}/folks/38/backends
+%dir %{_libdir}/folks/38/backends/eds
+%attr(755,root,root) %{_libdir}/folks/38/backends/eds/eds.so
+%dir %{_libdir}/folks/38/backends/key-file
+%attr(755,root,root) %{_libdir}/folks/38/backends/key-file/key-file.so
+%dir %{_libdir}/folks/38/backends/libsocialweb
+%attr(755,root,root) %{_libdir}/folks/38/backends/libsocialweb/libsocialweb.so
+%dir %{_libdir}/folks/38/backends/ofono
+%attr(755,root,root) %{_libdir}/folks/38/backends/ofono/ofono.so
+%dir %{_libdir}/folks/38/backends/telepathy
+%attr(755,root,root) %{_libdir}/folks/38/backends/telepathy/telepathy.so
+%dir %{_libdir}/folks/38/backends/tracker
+%attr(755,root,root) %{_libdir}/folks/38/backends/tracker/tracker.so
 %{_libdir}/girepository-1.0/*.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
