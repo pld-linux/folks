@@ -5,7 +5,7 @@
 Summary:	GObject contact aggregation library
 Name:		folks
 Version:	0.9.1
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.9/%{name}-%{version}.tar.xz
@@ -32,7 +32,7 @@ BuildRequires:	telepathy-glib-devel >= 0.19.0
 BuildRequires:	tracker-devel >= 0.16.0
 %if %{with vala}
 BuildRequires:	vala >= 2:0.17.6
-BuildRequires:	valadoc >= 0.3.1
+#BuildRequires:	valadoc >= 0.3.1
 BuildRequires:	vala-evolution-data-server >= 3.7.90
 BuildRequires:	vala-libgee >= 0.8.4
 BuildRequires:	vala-libsocialweb >= 0.25.20
@@ -94,7 +94,8 @@ API folks dla języka Vala.
 	--disable-silent-rules \
 	--disable-static \
 	--enable-tracker-backend \
-	%{__enable_disable vala vala}
+	%{__enable_disable vala vala} \
+	--disable-docs
 
 %{__make}
 
