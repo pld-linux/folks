@@ -4,12 +4,12 @@
 #
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.9.2
-Release:	2
+Version:	0.9.3
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.9/%{name}-%{version}.tar.xz
-# Source0-md5:	cf81089fbbce9666b3078c134604f925
+# Source0-md5:	409bce55abf1a985fe6679b273501bf6
 URL:		https://live.gnome.org/Folks
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
@@ -23,7 +23,6 @@ BuildRequires:	libgee-devel >= 0.8.4
 BuildRequires:	libsocialweb-devel >= 0.25.20
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
-BuildRequires:	libzeitgeist-devel >= 0.3.14
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	readline-devel
 BuildRequires:	ncurses-devel
@@ -37,10 +36,11 @@ BuildRequires:	vala-evolution-data-server >= 3.8.1
 BuildRequires:	vala-libgee >= 0.8.4
 BuildRequires:	vala-libsocialweb >= 0.25.20
 BuildRequires:	vala-telepathy-glib >= 0.19.0
-BuildRequires:	vala-zeitgeist1 >= 0.3.14
+BuildRequires:	vala-zeitgeist >= 0.9.14
 BuildRequires:	vala-tracker >= 0.16.0
 %endif
 BuildRequires:	xz
+BuildRequires:	zeitgeist-devel >= 0.9.14
 Requires:	libgee >= 0.8.4
 Requires:	evolution-data-server-libs >= 3.8.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -91,6 +91,7 @@ API folks dla języka Vala.
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-fatal-warnings \
 	--disable-silent-rules \
 	--disable-static \
 	--enable-tracker-backend \
