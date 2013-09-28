@@ -4,17 +4,17 @@
 #
 Summary:	GObject contact aggregation library
 Name:		folks
-Version:	0.9.3
+Version:	0.9.5
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.9/%{name}-%{version}.tar.xz
-# Source0-md5:	409bce55abf1a985fe6679b273501bf6
+# Source0-md5:	6faaf2c4de0e0863a5272f19837c693e
 URL:		https://live.gnome.org/Folks
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel
-BuildRequires:	evolution-data-server-devel >= 3.8.1
+BuildRequires:	evolution-data-server-devel >= 3.9.1
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	gobject-introspection-devel >= 1.30.0
@@ -133,20 +133,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libfolks-tracker.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfolks-tracker.so.25
 %dir %{_libdir}/folks
-%dir %{_libdir}/folks/39
-%dir %{_libdir}/folks/39/backends
-%dir %{_libdir}/folks/39/backends/eds
-%attr(755,root,root) %{_libdir}/folks/39/backends/eds/eds.so
-%dir %{_libdir}/folks/39/backends/key-file
-%attr(755,root,root) %{_libdir}/folks/39/backends/key-file/key-file.so
-%dir %{_libdir}/folks/39/backends/libsocialweb
-%attr(755,root,root) %{_libdir}/folks/39/backends/libsocialweb/libsocialweb.so
-%dir %{_libdir}/folks/39/backends/ofono
-%attr(755,root,root) %{_libdir}/folks/39/backends/ofono/ofono.so
-%dir %{_libdir}/folks/39/backends/telepathy
-%attr(755,root,root) %{_libdir}/folks/39/backends/telepathy/telepathy.so
-%dir %{_libdir}/folks/39/backends/tracker
-%attr(755,root,root) %{_libdir}/folks/39/backends/tracker/tracker.so
+%dir %{_libdir}/folks/41
+%dir %{_libdir}/folks/41/backends
+%dir %{_libdir}/folks/41/backends/eds
+%attr(755,root,root) %{_libdir}/folks/41/backends/eds/eds.so
+%dir %{_libdir}/folks/41/backends/key-file
+%attr(755,root,root) %{_libdir}/folks/41/backends/key-file/key-file.so
+%dir %{_libdir}/folks/41/backends/libsocialweb
+%attr(755,root,root) %{_libdir}/folks/41/backends/libsocialweb/libsocialweb.so
+%dir %{_libdir}/folks/41/backends/ofono
+%attr(755,root,root) %{_libdir}/folks/41/backends/ofono/ofono.so
+%dir %{_libdir}/folks/41/backends/telepathy
+%attr(755,root,root) %{_libdir}/folks/41/backends/telepathy/telepathy.so
+%dir %{_libdir}/folks/41/backends/tracker
+%attr(755,root,root) %{_libdir}/folks/41/backends/tracker/tracker.so
 %{_libdir}/girepository-1.0/*.typelib
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
