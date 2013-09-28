@@ -1,0 +1,80 @@
+--- folks-0.9.5/backends/eds/lib/Makefile.am.wiget	2013-09-28 14:35:38.658262874 +0200
++++ folks-0.9.5/backends/eds/lib/Makefile.am	2013-09-28 14:35:52.850833301 +0200
+@@ -135,7 +135,6 @@ FolksEds_@API_VERSION_MAJOR@_@API_VERSIO
+ FolksEds_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_INCLUDES = \
+         Gee-0.8 \
+         Gio-2.0 \
+-        Folks-$(API_VERSION_DOT) \
+         EBook-1.2 \
+         EBookContacts-1.2 \
+         EDataServer-1.2 \
+@@ -149,7 +148,8 @@ $(libfolks_eds_la_SOURCES) \
+         folks/folks-eds.h \
+         $(NULL)
+ FolksEds_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_NAMESPACE = FolksEds
+-FolksEds_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_SCANNERFLAGS = --identifier-prefix=Edsf
++FolksEds_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_SCANNERFLAGS = --identifier-prefix=Edsf \
++	--include-uninstalled=$(abs_top_builddir)/folks/Folks-$(API_VERSION_DOT).gir -I$(top_srcdir)
+ INTROSPECTION_GIRS = $(EDSF_GIR)
+ 
+ libfolks_eds_la_VALAFLAGS += \
+--- folks-0.9.5/backends/libsocialweb/lib/Makefile.am.wiget	2013-07-08 17:09:47.000000000 +0200
++++ folks-0.9.5/backends/libsocialweb/lib/Makefile.am	2013-09-28 14:35:10.559773260 +0200
+@@ -121,7 +121,6 @@ FolksLibsocialweb_@API_VERSION_MAJOR@_@A
+ FolksLibsocialweb_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_INCLUDES = \
+         Gee-0.8 \
+         Gio-2.0 \
+-        Folks-$(API_VERSION_DOT) \
+         SocialWebClient-0.25 \
+         $(NULL)
+ FolksLibsocialweb_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_LIBS = \
+@@ -133,7 +132,8 @@ $(libfolks_libsocialweb_la_SOURCES) \
+         folks/folks-libsocialweb.h \
+         $(NULL)
+ FolksLibsocialweb_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_NAMESPACE = FolksLibsocialweb
+-FolksLibsocialweb_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_SCANNERFLAGS = --identifier-prefix=Swf
++FolksLibsocialweb_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_SCANNERFLAGS = --identifier-prefix=Swf \
++	--include-uninstalled=$(abs_top_builddir)/folks/Folks-$(API_VERSION_DOT).gir -I$(top_srcdir)
+ INTROSPECTION_GIRS = $(SWF_GIR)
+ 
+ libfolks_libsocialweb_la_VALAFLAGS += \
+--- folks-0.9.5/backends/telepathy/lib/Makefile.am.wiget	2013-07-09 20:27:07.000000000 +0200
++++ folks-0.9.5/backends/telepathy/lib/Makefile.am	2013-09-28 14:32:14.105924412 +0200
+@@ -356,7 +356,6 @@ FolksTelepathy_@API_VERSION_MAJOR@_@API_
+ FolksTelepathy_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_INCLUDES = \
+         Gee-0.8 \
+         Gio-2.0 \
+-        Folks-$(API_VERSION_DOT) \
+         TelepathyGLib-0.12 \
+         $(NULL)
+ FolksTelepathy_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_LIBS = \
+@@ -368,7 +367,8 @@ FolksTelepathy_@API_VERSION_MAJOR@_@API_
+         folks/folks-telepathy.h \
+         $(NULL)
+ FolksTelepathy_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_NAMESPACE = FolksTelepathy
+-FolksTelepathy_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_SCANNERFLAGS = --identifier-prefix=Tpf
++FolksTelepathy_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_SCANNERFLAGS = --identifier-prefix=Tpf \
++	--include-uninstalled=$(abs_top_builddir)/folks/Folks-$(API_VERSION_DOT).gir -I$(top_srcdir)
+ INTROSPECTION_GIRS += $(TPF_GIR)
+ 
+ if ENABLE_ZEITGEIST
+--- folks-0.9.5/backends/tracker/lib/Makefile.am.wiget	2013-09-28 14:36:31.562085728 +0200
++++ folks-0.9.5/backends/tracker/lib/Makefile.am	2013-09-28 14:36:45.121356846 +0200
+@@ -117,7 +117,6 @@ FolksTracker_@API_VERSION_MAJOR@_@API_VE
+ FolksTracker_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_INCLUDES = \
+         Gee-0.8 \
+         Gio-2.0 \
+-        Folks-$(API_VERSION_DOT) \
+         Tracker-$(TRACKER_SPARQL_MAJOR) \
+         $(NULL)
+ FolksTracker_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_LIBS = \
+@@ -129,7 +128,8 @@ $(libfolks_tracker_la_SOURCES) \
+         folks/folks-tracker.h \
+         $(NULL)
+ FolksTracker_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_NAMESPACE = FolksTracker
+-FolksTracker_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_SCANNERFLAGS = --identifier-prefix=Trf
++FolksTracker_@API_VERSION_MAJOR@_@API_VERSION_MINOR@_gir_SCANNERFLAGS = --identifier-prefix=Trf \
++	--include-uninstalled=$(abs_top_builddir)/folks/Folks-$(API_VERSION_DOT).gir -I$(top_srcdir)
+ INTROSPECTION_GIRS = $(TRF_GIR)
+ 
+ libfolks_tracker_la_VALAFLAGS += \
