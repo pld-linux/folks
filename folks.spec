@@ -6,11 +6,12 @@ Summary:	GObject contact aggregation library
 Summary(pl.UTF-8):	Biblioteka GObject do agregowania kontaktów
 Name:		folks
 Version:	0.9.6
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.9/%{name}-%{version}.tar.xz
 # Source0-md5:	c3759db485f9ac5fd6c28c47e89123b0
+Patch0:		%{name}-tracker-1.0.patch
 URL:		https://live.gnome.org/Folks
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.11
@@ -30,7 +31,7 @@ BuildRequires:	readline-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	telepathy-glib-devel >= 0.19.0
-BuildRequires:	tracker-devel >= 0.16.0
+BuildRequires:	tracker-devel >= 1.0.0
 %if %{with vala}
 BuildRequires:	vala >= 2:0.22.1
 BuildRequires:	vala-evolution-data-server >= 3.9.1
@@ -38,7 +39,7 @@ BuildRequires:	vala-libgee >= 0.8.4
 BuildRequires:	vala-libsocialweb >= 0.25.20
 BuildRequires:	vala-telepathy-glib >= 0.19.0
 BuildRequires:	vala-zeitgeist >= 0.9.14
-BuildRequires:	vala-tracker >= 0.16.0
+BuildRequires:	vala-tracker >= 1.0.0
 #BuildRequires:	valadoc >= 0.3.1
 %endif
 BuildRequires:	xz
@@ -47,7 +48,7 @@ Requires:	glib2 >= 1:2.38.2
 Requires:	libgee >= 0.8.4
 Requires:	evolution-data-server-libs >= 3.9.1
 Requires:	telepathy-glib >= 0.19.0
-Requires:	tracker-libs >= 0.16.0
+Requires:	tracker-libs >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -70,7 +71,7 @@ Requires:	glib2-devel >= 1:2.38.2
 Requires:	libgee-devel >= 0.8.4
 Requires:	libsocialweb-devel >= 0.25.20
 Requires:	telepathy-glib-devel >= 0.19.0
-Requires:	tracker-devel >= 0.16.0
+Requires:	tracker-devel >= 1.0.0
 
 %description devel
 Development files for folks libraries.
@@ -88,7 +89,7 @@ Requires:	vala-evolution-data-server >= 3.9.1
 Requires:	vala-libgee >= 0.8.4
 Requires:	vala-libsocialweb >= 0.25.20
 Requires:	vala-telepathy-glib >= 0.19.0
-Requires:	vala-tracker >= 0.16.0
+Requires:	vala-tracker >= 1.0.0
 
 %description -n vala-folks
 folks API for Vala language.
@@ -98,6 +99,7 @@ API folks dla języka Vala.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__intltoolize}
