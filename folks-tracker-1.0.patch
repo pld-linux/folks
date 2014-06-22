@@ -1,7 +1,6 @@
-diff -urN folks-0.9.6/configure.ac folks-0.9.6.new/configure.ac
---- folks-0.9.6/configure.ac	2013-11-06 17:35:50.000000000 +0100
-+++ folks-0.9.6.new/configure.ac	2014-03-30 22:22:01.988309549 +0200
-@@ -200,8 +200,8 @@
+--- folks-0.9.7/configure.ac.orig	2014-06-22 07:45:18.691234061 +0200
++++ folks-0.9.7/configure.ac	2014-06-22 07:46:23.097899383 +0200
+@@ -261,8 +261,8 @@
  GLIB_REQUIRED=2.38.2
  VALA_REQUIRED=0.22.0.28-9090
  VALADOC_REQUIRED=0.3.1
@@ -9,6 +8,6 @@ diff -urN folks-0.9.6/configure.ac folks-0.9.6.new/configure.ac
 -TRACKER_SPARQL_REQUIRED=0.15.2
 +TRACKER_SPARQL_MAJOR=1.0
 +TRACKER_SPARQL_REQUIRED=1.0
- EBOOK_REQUIRED=3.9.1
+ EBOOK_REQUIRED=3.8
+ EBOOK_REQUIRED_FOR_BLUEZ=3.9.1
  EDATASERVER_REQUIRED=3.5.3.1
- ZEITGEIST_REQUIRED=0.9.14
