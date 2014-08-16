@@ -5,12 +5,12 @@
 Summary:	GObject contact aggregation library
 Summary(pl.UTF-8):	Biblioteka GObject do agregowania kontaktów
 Name:		folks
-Version:	0.9.7.1
+Version:	0.9.8
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.9/%{name}-%{version}.tar.xz
-# Source0-md5:	18f3e0799fdea55be7e27bc16e73bd8a
+# Source0-md5:	1bfccf799ae58533ebfcb14b831b5cd9
 Patch0:		%{name}-tracker-1.0.patch
 Patch1:		%{name}-link.patch
 URL:		https://live.gnome.org/Folks
@@ -27,9 +27,9 @@ BuildRequires:	libgee-devel >= 0.8.4
 BuildRequires:	libsocialweb-devel >= 0.25.20
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libxml2-devel >= 2.0
+BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	readline-devel
-BuildRequires:	ncurses-devel
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	telepathy-glib-devel >= 0.19.0
 BuildRequires:	tracker-devel >= 1.0.0
@@ -39,15 +39,15 @@ BuildRequires:	vala-evolution-data-server >= 3.9.1
 BuildRequires:	vala-libgee >= 0.8.4
 BuildRequires:	vala-libsocialweb >= 0.25.20
 BuildRequires:	vala-telepathy-glib >= 0.19.0
-BuildRequires:	vala-zeitgeist >= 0.9.14
 BuildRequires:	vala-tracker >= 1.0.0
+BuildRequires:	vala-zeitgeist >= 0.9.14
 #BuildRequires:	valadoc >= 0.3.1
 %endif
 BuildRequires:	xz
 BuildRequires:	zeitgeist-devel >= 0.9.14
+Requires:	evolution-data-server-libs >= 3.9.1
 Requires:	glib2 >= 1:2.39.2
 Requires:	libgee >= 0.8.4
-Requires:	evolution-data-server-libs >= 3.9.1
 Requires:	telepathy-glib >= 0.19.0
 Requires:	tracker-libs >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
