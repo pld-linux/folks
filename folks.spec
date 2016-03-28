@@ -1,12 +1,12 @@
 #
 # Conditional build:
 %bcond_without	vala		# do not build Vala API
-#
+
 Summary:	GObject contact aggregation library
 Summary(pl.UTF-8):	Biblioteka GObject do agregowania kontaktów
 Name:		folks
 Version:	0.11.2
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.11/%{name}-%{version}.tar.xz
@@ -89,6 +89,9 @@ Requires:	vala-libgee >= 0.8.4
 Requires:	vala-libsocialweb >= 0.25.20
 Requires:	vala-telepathy-glib >= 0.19.9
 Requires:	vala-tracker >= 1.0.0
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description -n vala-folks
 folks API for Vala language.
