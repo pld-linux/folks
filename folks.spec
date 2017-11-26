@@ -11,6 +11,7 @@ License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.11/%{name}-%{version}.tar.xz
 # Source0-md5:	08a0e9759d577c6ece43e2db4e0d039e
+Patch0:		folks-tracer2.patch
 URL:		https://live.gnome.org/Folks
 BuildRequires:	autoconf >= 2.65
 BuildRequires:	automake >= 1:1.12
@@ -101,6 +102,7 @@ API folks dla języka Vala.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__intltoolize}
