@@ -1,0 +1,31 @@
+--- folks-0.12.1/backends/libsocialweb/lib/swf-persona-store.vala.orig	2019-04-24 13:20:07.000000000 +0200
++++ folks-0.12.1/backends/libsocialweb/lib/swf-persona-store.vala	2019-05-19 18:47:49.097438001 +0200
+@@ -272,7 +272,7 @@
+   /* This is safe to call multiple times concurrently (assuming libsocialweb
+    * itself is safe). */
+   private async ClientContactView? _contacts_query_open_view (string query,
+-      HashTable<weak string, weak string> parameters)
++      HashTable<string, string> parameters)
+     {
+       /* Take a reference to the PersonaStore while waiting for the async call
+        * to return. See: bgo#665039. */
+@@ -374,7 +374,7 @@
+ 
+           /* Open a contacts query view. */
+           var contact_view = yield this._contacts_query_open_view ("people",
+-              new HashTable<weak string, weak string> (str_hash,
++              new HashTable<string, string> (str_hash,
+                   str_equal));
+ 
+           Internal.profiling_point ("opened view in Swf.PersonaStore " +
+--- folks-0.12.1/backends/libsocialweb/meson.build.orig	2019-04-24 13:20:07.000000000 +0200
++++ folks-0.12.1/backends/libsocialweb/meson.build	2019-05-19 19:50:28.300405984 +0200
+@@ -30,7 +30,7 @@
+   vala_args: libsocialweb_backend_vala_flags,
+   c_args: libsocialweb_backend_c_flags,
+   name_prefix: '',
+-  install_dir: folks_backend_dir / dummy_backend_name,
++  install_dir: folks_backend_dir / libsocialweb_backend_name,
+   install: true,
+ )
+ 

@@ -1,0 +1,29 @@
+vala-generated sources doesn't seem to work properly when buiding both shared and static library (as of meson 0.50.1)
+
+Target[<SharedLibrary 5553389@@telepathy-test@sha: libtelepathy-test.so>]: OrderedDict([('../tests/lib/telepathy/test-case.vala', <File: tests/lib/telepathy/test-case.vala (not built)>)]) OrderedDict([('tests/lib/telepathy/contactlist/tp-test-contactlist.vapi', <VapiTarget e042cec@@tp-test-contactlist.vapi@cus: ['/usr/bin/vapigen', '--quiet', '--library=tp-test-contactlist', '--directory=/home/comp/rpm/BUILD/folks-0.12.1/build/tests/lib/telepathy/contactlist', '--pkg=gio-2.0', '--pkg=telepathy-glib', '--metadatadir=/home/comp/rpm/BUILD/folks-0.12.1/tests/lib/telepathy/contactlist', '/home/comp/rpm/BUILD/folks-0.12.1/build/tests/lib/telepathy/contactlist/TpTests-0.6.gir']>)]) (OrderedDict(), OrderedDict())
+
+Target[<StaticLibrary 5553389@@telepathy-test@sta: libtelepathy-test.a>]: OrderedDict() OrderedDict([('tests/lib/telepathy/contactlist/tp-test-contactlist.vapi', <VapiTarget e042cec@@tp-test-contactlist.vapi@cus: ['/usr/bin/vapigen', '--quiet', '--library=tp-test-contactlist', '--directory=/home/comp/rpm/BUILD/folks-0.12.1/build/tests/lib/telepathy/contactlist', '--pkg=gio-2.0', '--pkg=telepathy-glib', '--metadatadir=/home/comp/rpm/BUILD/folks-0.12.1/tests/lib/telepathy/contactlist', '/home/comp/rpm/BUILD/folks-0.12.1/build/tests/lib/telepathy/contactlist/TpTests-0.6.gir']>)]) (OrderedDict(), OrderedDict())
+
+#--- folks-0.12.1/tests/lib/telepathy/meson.build.orig	2019-04-24 13:20:07.000000000 +0200
+#+++ folks-0.12.1/tests/lib/telepathy/meson.build	2019-05-19 12:39:02.300642477 +0200
+#@@ -1,6 +1,6 @@
+#-telepathy_test_lib_sources = [
+#-  'test-case.vala',
+#-]
+#+telepathy_test_lib_sources = files(
+#+  'test-case.vala'
+#+)
+# 
+# telepathy_test_lib_deps = [
+#   common_test_lib_deps,
+--- folks-0.12.1/tests/lib/telepathy/meson.build.orig	2019-04-24 13:20:07.000000000 +0200
++++ folks-0.12.1/tests/lib/telepathy/meson.build	2019-05-19 17:28:29.319890596 +0200
+@@ -9,7 +9,7 @@
+   libkeyfile_test_dep,
+ ]
+ 
+-telepathy_test_lib = library('telepathy-test',
++telepathy_test_lib = static_library('telepathy-test',
+   telepathy_test_lib_sources,
+   dependencies: telepathy_test_lib_deps,
+   vala_args: common_test_lib_flags,
