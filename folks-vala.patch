@@ -1,0 +1,11 @@
+--- folks-0.14.0/backends/tracker/lib/trf-persona-store.vala.orig	2020-03-11 08:36:53.000000000 +0100
++++ folks-0.14.0/backends/tracker/lib/trf-persona-store.vala	2020-09-22 16:31:17.420470689 +0200
+@@ -1300,7 +1300,7 @@
+     }
+ 
+   private void _graph_updated_cb (DBusConnection connection,
+-      string sender_name, string object_path, string interface_name,
++      string? sender_name, string object_path, string interface_name,
+       string signal_name, Variant parameters)
+     {
+       string class_name = "";
