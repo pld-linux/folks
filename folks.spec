@@ -112,9 +112,7 @@ Requires:	vala-evolution-data-server >= 3.33.2
 Requires:	vala-libgee >= 0.8.4
 %{?with_telepathy:Requires:	vala-telepathy-glib >= 0.19.9}
 %{?with_tracker:Requires:	vala-tracker >= 2.0}
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description -n vala-folks
 folks API for Vala language.
