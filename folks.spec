@@ -7,7 +7,6 @@
 %bcond_without	ofono		# oFono backend
 %bcond_without	telepathy	# Telepathy backend
 %bcond_without	zeitgeist	# ` Zeitgeist support in Telepathy backend
-%bcond_without	tracker		# Tracker backend
 
 %if %{without telepathy}
 %undefine	with_zeitgeist
@@ -15,24 +14,23 @@
 Summary:	GObject contact aggregation library
 Summary(pl.UTF-8):	Biblioteka GObject do agregowania kontaktów
 Name:		folks
-Version:	0.14.0
-Release:	2
+Version:	0.15.2
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/folks/0.14/%{name}-%{version}.tar.xz
-# Source0-md5:	dc852fceab9e84362b675d5ffcd4803e
+Source0:	https://download.gnome.org/sources/folks/0.15/%{name}-%{version}.tar.xz
+# Source0-md5:	db7d824bcc7b2404c9570451028f1aa6
 Patch0:		%{name}-meson.patch
 Patch1:		%{name}-module.patch
-Patch2:		%{name}-vala.patch
 URL:		https://wiki.gnome.org/Projects/Folks
 BuildRequires:	dbus-devel
 %{?with_telepathy:BuildRequires:	dbus-glib-devel}
 %if %{with bluez} || %{with evolution} || %{with ofono}
 # libebook for all; libebook-contacts, libedataserver, evolution-data-server for evolution
-BuildRequires:	evolution-data-server-devel >= 3.33.2
+BuildRequires:	evolution-data-server-devel >= 3.38
 %endif
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.44
+BuildRequires:	glib2-devel >= 1:2.58
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	libgee-devel >= 0.8.4
 BuildRequires:	libxml2-devel >= 2.0
@@ -42,34 +40,32 @@ BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	python3 >= 1:3.2
 %{?with_bluez:BuildRequires:	python3-dbusmock}
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	readline-devel
 BuildRequires:	tar >= 1:1.22
 %{?with_telepathy:BuildRequires:	telepathy-glib-devel >= 0.19.9}
-%{?with_tracker:BuildRequires:	tracker-devel >= 2.0}
 %if %{with vala}
 BuildRequires:	vala >= 2:0.22.1
 %if %{with bluez} || %{with evolution} || %{with ofono}
-BuildRequires:	vala-evolution-data-server >= 3.33.2
+BuildRequires:	vala-evolution-data-server >= 3.38
 %endif
 BuildRequires:	vala-libgee >= 0.8.4
 %{?with_telepathy:BuildRequires:	vala-telepathy-glib >= 0.19.9}
-%{?with_tracker:BuildRequires:	vala-tracker >= 2.0}
 %{?with_zeitgeist:BuildRequires:	vala-zeitgeist >= 0.9.14}
 %endif
 %{?with_apidocs:BuildRequires:	valadoc >= 0.3.1}
 BuildRequires:	xz
 %{?with_zeitgeist:BuildRequires:	zeitgeist-devel >= 0.9.14}
 %if %{with bluez} || %{with evolution} || %{with ofono}
-Requires:	evolution-data-server-libs >= 3.33.2
+Requires:	evolution-data-server-libs >= 3.38
 %endif
-Requires:	glib2 >= 1:2.44
+Requires:	glib2 >= 1:2.58
 Requires:	libgee >= 0.8.4
 %{?with_telepathy:Requires:	telepathy-glib >= 0.19.9}
-%{?with_tracker:Requires:	tracker-libs >= 2.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		abiver	46
+%define		abiver	26
 
 %description
 libfolks is a library that aggregates people from multiple sources
@@ -87,12 +83,11 @@ Summary(pl.UTF-8):	Pliki programistyczne bibliotek folks
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %if %{with bluez} || %{with evolution} || %{with ofono}
-Requires:	evolution-data-server-devel >= 3.33.2
+Requires:	evolution-data-server-devel >= 3.38
 %endif
-Requires:	glib2-devel >= 1:2.44
+Requires:	glib2-devel >= 1:2.58
 Requires:	libgee-devel >= 0.8.4
 %{?with_telepathy:Requires:	telepathy-glib-devel >= 0.19.9}
-%{?with_tracker:Requires:	tracker-devel >= 2.0}
 
 %description devel
 Development files for folks libraries.
@@ -107,11 +102,10 @@ Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.22.1
 %if %{with bluez} || %{with evolution} || %{with ofono}
-Requires:	vala-evolution-data-server >= 3.33.2
+Requires:	vala-evolution-data-server >= 3.38
 %endif
 Requires:	vala-libgee >= 0.8.4
 %{?with_telepathy:Requires:	vala-telepathy-glib >= 0.19.9}
-%{?with_tracker:Requires:	vala-tracker >= 2.0}
 BuildArch:	noarch
 
 %description -n vala-folks
@@ -124,7 +118,6 @@ API folks dla języka Vala.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %meson build \
@@ -132,7 +125,6 @@ API folks dla języka Vala.
 	%{?with_apidocs:-Ddocs=true} \
 	%{!?with_evolution:-Deds_backend=false} \
 	%{!?with_ofono:-Dofono_backend=false} \
-	%{?with_tracker:-Dtracker_backend=true} \
 	%{!?with_telepathy:-Dtelepathy_backend=false} \
 	%{?with_zeitgeist:-Dzeitgeist=true}
 
@@ -153,15 +145,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS MAINTAINERS NEWS README.md
+%doc AUTHORS NEWS README.md
 %attr(755,root,root) %{_bindir}/folks-import
 %attr(755,root,root) %{_bindir}/folks-inspect
 %attr(755,root,root) %{_libdir}/libfolks.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks.so.25
+%attr(755,root,root) %ghost %{_libdir}/libfolks.so.26
 %attr(755,root,root) %{_libdir}/libfolks-dummy.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-dummy.so.25
-%{_libdir}/girepository-1.0/Folks-0.6.typelib
-%{_libdir}/girepository-1.0/FolksDummy-0.6.typelib
+%attr(755,root,root) %ghost %{_libdir}/libfolks-dummy.so.26
+%{_libdir}/girepository-1.0/Folks-0.7.typelib
+%{_libdir}/girepository-1.0/FolksDummy-0.7.typelib
 %dir %{_libdir}/folks
 %dir %{_libdir}/folks/%{abiver}
 %dir %{_libdir}/folks/%{abiver}/backends
@@ -179,24 +171,17 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %if %{with evolution}
 %attr(755,root,root) %{_libdir}/libfolks-eds.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-eds.so.25
-%{_libdir}/girepository-1.0/FolksEds-0.6.typelib
+%attr(755,root,root) %ghost %{_libdir}/libfolks-eds.so.26
+%{_libdir}/girepository-1.0/FolksEds-0.7.typelib
 %dir %{_libdir}/folks/%{abiver}/backends/eds
 %attr(755,root,root) %{_libdir}/folks/%{abiver}/backends/eds/eds.so
 %endif
 %if %{with telepathy}
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.25
-%{_libdir}/girepository-1.0/FolksTelepathy-0.6.typelib
+%attr(755,root,root) %ghost %{_libdir}/libfolks-telepathy.so.26
+%{_libdir}/girepository-1.0/FolksTelepathy-0.7.typelib
 %dir %{_libdir}/folks/%{abiver}/backends/telepathy
 %attr(755,root,root) %{_libdir}/folks/%{abiver}/backends/telepathy/telepathy.so
-%endif
-%if %{with tracker}
-%attr(755,root,root) %{_libdir}/libfolks-tracker.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libfolks-tracker.so.25
-%{_libdir}/girepository-1.0/FolksTracker-0.6.typelib
-%dir %{_libdir}/folks/%{abiver}/backends/tracker
-%attr(755,root,root) %{_libdir}/folks/%{abiver}/backends/tracker/tracker.so
 %endif
 %{_datadir}/GConf/gsettings/folks.convert
 %{_datadir}/glib-2.0/schemas/org.freedesktop.folks.gschema.xml
@@ -205,25 +190,20 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libfolks.so
 %attr(755,root,root) %{_libdir}/libfolks-dummy.so
-%{_datadir}/gir-1.0/Folks-0.6.gir
-%{_datadir}/gir-1.0/FolksDummy-0.6.gir
+%{_datadir}/gir-1.0/Folks-0.7.gir
+%{_datadir}/gir-1.0/FolksDummy-0.7.gir
 %{_includedir}/folks
 %{_pkgconfigdir}/folks.pc
 %{_pkgconfigdir}/folks-dummy.pc
 %if %{with evolution}
 %attr(755,root,root) %{_libdir}/libfolks-eds.so
-%{_datadir}/gir-1.0/FolksEds-0.6.gir
+%{_datadir}/gir-1.0/FolksEds-0.7.gir
 %{_pkgconfigdir}/folks-eds.pc
 %endif
 %if %{with telepathy}
 %attr(755,root,root) %{_libdir}/libfolks-telepathy.so
-%{_datadir}/gir-1.0/FolksTelepathy-0.6.gir
+%{_datadir}/gir-1.0/FolksTelepathy-0.7.gir
 %{_pkgconfigdir}/folks-telepathy.pc
-%endif
-%if %{with tracker}
-%attr(755,root,root) %{_libdir}/libfolks-tracker.so
-%{_datadir}/gir-1.0/FolksTracker-0.6.gir
-%{_pkgconfigdir}/folks-tracker.pc
 %endif
 
 %if %{with vala}
@@ -240,9 +220,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with telepathy}
 %{_datadir}/vala/vapi/folks-telepathy.deps
 %{_datadir}/vala/vapi/folks-telepathy.vapi
-%endif
-%if %{with tracker}
-%{_datadir}/vala/vapi/folks-tracker.deps
-%{_datadir}/vala/vapi/folks-tracker.vapi
 %endif
 %endif
