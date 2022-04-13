@@ -14,12 +14,12 @@
 Summary:	GObject contact aggregation library
 Summary(pl.UTF-8):	Biblioteka GObject do agregowania kontaktów
 Name:		folks
-Version:	0.15.4
+Version:	0.15.5
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/folks/0.15/%{name}-%{version}.tar.xz
-# Source0-md5:	84757a41d6842a6f8f5401c14def4832
+# Source0-md5:	62db936e9601e33268e2019b6eb0684e
 Patch0:		%{name}-meson.patch
 Patch1:		%{name}-module.patch
 URL:		https://wiki.gnome.org/Projects/Folks
