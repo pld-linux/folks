@@ -5,6 +5,7 @@
 %bcond_without	bluez		# Bluez backend
 %bcond_without	evolution	# EDS (Evolution Data Server) backend
 %bcond_without	ofono		# oFono backend
+%bcond_with	sysprof		# sysprof based profiling
 %bcond_without	telepathy	# Telepathy backend
 %bcond_without	zeitgeist	# ` Zeitgeist support in Telepathy backend
 
@@ -14,14 +15,13 @@
 Summary:	GObject contact aggregation library
 Summary(pl.UTF-8):	Biblioteka GObject do agregowania kontaktów
 Name:		folks
-Version:	0.15.5
+Version:	0.15.6
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/folks/0.15/%{name}-%{version}.tar.xz
-# Source0-md5:	62db936e9601e33268e2019b6eb0684e
+# Source0-md5:	04b6684031a463fb7a28d2d6f70b6d23
 Patch0:		%{name}-meson.patch
-Patch1:		%{name}-module.patch
 URL:		https://wiki.gnome.org/Projects/Folks
 BuildRequires:	dbus-devel
 %{?with_telepathy:BuildRequires:	dbus-glib-devel}
@@ -34,7 +34,7 @@ BuildRequires:	glib2-devel >= 1:2.58
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	libgee-devel >= 0.8.4
 BuildRequires:	libxml2-devel >= 2.0
-BuildRequires:	meson >= 0.51
+BuildRequires:	meson >= 0.57
 BuildRequires:	ncurses-devel
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.21
@@ -43,6 +43,7 @@ BuildRequires:	python3 >= 1:3.2
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	readline-devel
+%{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38.0}
 BuildRequires:	tar >= 1:1.22
 %{?with_telepathy:BuildRequires:	telepathy-glib-devel >= 0.19.9}
 %if %{with vala}
@@ -117,7 +118,6 @@ API folks dla języka Vala.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %meson build \
@@ -125,6 +125,7 @@ API folks dla języka Vala.
 	%{?with_apidocs:-Ddocs=true} \
 	%{!?with_evolution:-Deds_backend=false} \
 	%{!?with_ofono:-Dofono_backend=false} \
+	%{?with_sysprof:-Dprofiling=true} \
 	%{!?with_telepathy:-Dtelepathy_backend=false} \
 	%{?with_zeitgeist:-Dzeitgeist=true}
 
