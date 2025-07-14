@@ -117,7 +117,7 @@ API folks dla języka Vala.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %meson build \
