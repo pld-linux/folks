@@ -120,7 +120,7 @@ API folks dla języka Vala.
 %patch -P0 -p1
 
 %build
-%meson build \
+%meson \
 	%{!?with_bluez:-Dbluez_backend=false} \
 	%{?with_apidocs:-Ddocs=true} \
 	%{!?with_evolution:-Deds_backend=false} \
@@ -129,12 +129,12 @@ API folks dla języka Vala.
 	%{!?with_telepathy:-Dtelepathy_backend=false} \
 	%{?with_zeitgeist:-Dzeitgeist=true}
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 # not supported by glibc (as of 2.37)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
