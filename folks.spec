@@ -41,7 +41,7 @@ BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	python3 >= 1:3.2
 %{?with_bluez:BuildRequires:	python3-dbusmock}
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	readline-devel
 %{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38.0}
 BuildRequires:	tar >= 1:1.22
